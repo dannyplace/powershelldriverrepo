@@ -6,24 +6,4 @@
             <driverurl>http://ipv4.download.thinkbroadband.com/5MB.zip</driverurl>
 			<hash>C0DE104C1E68625629646025D15A6129A2B4B6496CD9CEACD7F7B5078E1849BA</hash>
 	</driverlist>
-	<driverlist>
-        	<model>20NYS0HS00</model>
-        	<driverpath>C:\LENOVO\</driverpath>
-	</driverlist>
-	<driverlist>
-        	<model>81N8</model>
-        	<driverpath>C:\LENOVO\S340-15IWL</driverpath>
-	</driverlist>
-	<driverlist>
-        	<model>20SM</model>
-        	<driverpath>C:\LENOVO\20SM</driverpath>
-	</driverlist>
-	<driverlist>
-        	<model>21A4</model>
-        	<driverpath>C:\LENOVO\21A4</driverpath>
-	</driverlist>
-	<driverlist>
-        	<model>ESPRIMO Q958</model>
-        	<driverpath>C:\FUJITSU\</driverpath>
-	</driverlist>
 </drivers>
