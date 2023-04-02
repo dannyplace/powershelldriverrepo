@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <drivers>
 	<driverlist>
-        	<model>20QQS00900a</model>
+        	<model>20QQS00900</model>
         	<driverpath>C:\HP\</driverpath>
             <driverurl>http://ipv4.download.thinkbroadband.com/5MB.zip</driverurl>
 			<hash>C0DE104C1E68625629646025D15A6129A2B4B6496CD9CEACD7F7B5078E1849BA</hash>
