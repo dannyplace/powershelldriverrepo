@@ -1,3 +1,7 @@
+#Download latest XML Repo from Github
+Invoke-WebRequest -URI https://raw.githubusercontent.com/dannyplace/powershelldriverrepo/main/drivers.xml -OutFile $PSScriptRoot\drivers.xml
+write-host "Downloading newest driverrepo" -ForegroundColor White -BackgroundColor Yellow
+
 #Check device modelnumber. This will be used to check the device modelnumber against the XML File.
 $GetModelBIOS = Get-CimInstance -ClassName Win32_ComputerSystem | ForEach-Object { $_.model }
 
@@ -27,21 +31,21 @@ $DriverPath = Test-Path -Path "C:\Temp\drivers.zip"
 
 if ($GetURL) {
 
-write-host "Drivers gevonden voor $GetModelBios`:" -ForegroundColor White -BackgroundColor Darkgreen
+write-host "Drivers found for model: $GetModelBios" -ForegroundColor White -BackgroundColor Darkgreen
 
-write-host "Drivers worden gedownload van de gekozen repository via: $GetURL`:" -ForegroundColor White -BackgroundColor Yellow
+write-host "Drivers being downloaded from: $GetURL`:" -ForegroundColor White -BackgroundColor Yellow
 Invoke-WebRequest -URI $GetURL -OutFile $DownloadFile
 
-Write-Output "Hash van XML (verwachte Hash): $GetHashXML"
-write-output "Hash van gedownload bestand: $GetFileHash"
+Write-Output "XML Hash (verwachte Hash): $GetHashXML"
+write-output "Driver package Hash: $GetFileHash"
 
 
 if ($GetHashXML -eq (Get-FileHash -Path $DownloadFile | Select-Object -ExpandProperty Hash -first 1)) {
-    write-host "Hash komt overeen met XML. Het bestand is veilig!" -ForegroundColor White -BackgroundColor Green
+    write-host "Hash matches with XML. The file should be secure!" -ForegroundColor White -BackgroundColor Green
 }
 
 else {
-    write-host "Hash komt NIET overeen met XML. Bestand zal worden verwijderd! Raadpleeg de drivers.xml" -ForegroundColor White -BackgroundColor Red
+    write-host "Hash does NOT matche with the XML. File will be deleted! Refer to drivers.xml or Github" -ForegroundColor White -BackgroundColor Red
     Remove-Item -Path $DownloadFile
 }
 
@@ -50,6 +54,6 @@ else {
 # Get-ChildItem "$matchmodel" -Recurse -Filter "*.inf" | ForEach-Object { PNPUtil.exe /add-driver $_.FullName /install }
 }
 else { 
-write-host "Geen drivers gevonden voor $GetModelBios. Gelieve de drivers.xml raadplegen." -ForegroundColor White -BackgroundColor Red
+write-host "No drivers found for $GetModelBios. Please refer to drivers.xml." -ForegroundColor White -BackgroundColor Red
 Exit
 }
