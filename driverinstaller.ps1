@@ -36,16 +36,16 @@ write-host "Drivers found for model: $GetModelBios" -ForegroundColor White -Back
 write-host "Drivers being downloaded from: $GetURL`:" -ForegroundColor White -BackgroundColor Yellow
 Invoke-WebRequest -URI $GetURL -OutFile $DownloadFile
 
-Write-Output "XML Hash (verwachte Hash): $GetHashXML"
-write-output "Driver package Hash: $GetFileHash"
 
 
-if ($GetHashXML -eq (Get-FileHash -Path $DownloadFile | Select-Object -ExpandProperty Hash -first 1)) {
+
+if ($GetHashXML -eq (Get-FileHash -Path $DownloadFile | Select-Object -ExpandProperty Hash -first 1 -OutVariable GetFileHash)) {
     write-host "Hash matches with XML. The file should be secure!" -ForegroundColor White -BackgroundColor Green
+
 }
 
 else {
-    write-host "Hash does NOT matche with the XML. File will be deleted! Refer to drivers.xml or Github" -ForegroundColor White -BackgroundColor Red
+    write-host "Hash does NOT matche with the XML. File will be deleted! Refer to drivers.xml or Github." -ForegroundColor White -BackgroundColor Red
     Remove-Item -Path $DownloadFile
 }
 
@@ -57,3 +57,5 @@ else {
 write-host "No drivers found for $GetModelBios. Please refer to drivers.xml." -ForegroundColor White -BackgroundColor Red
 Exit
 }
+write-Output "Driver package Hash: $GetFileHash"
+Write-Output "XML Hash (verwachte Hash): $GetHashXML"
