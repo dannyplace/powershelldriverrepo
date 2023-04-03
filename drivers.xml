@@ -2,8 +2,23 @@
 <drivers>
 	<driverlist>
         	<model>20QQS00900</model>
-        	<driverpath>C:\HP\</driverpath>
+			<manufacturer>Lenovo</manufacturer>
+        	<driverpath>C:\Temp\</driverpath>
             <driverurl>http://ipv4.download.thinkbroadband.com/5MB.zip</driverurl>
 			<hash>C0DE104C1E68625629646025D15A6129A2B4B6496CD9CEACD7F7B5078E1849BA</hash>
+	</driverlist>
+	<driverlist>
+        	<model>20NYS7WC00</model>
+			<manufacturer>Lenovo</manufacturer>
+        	<driverpath>C:\Temp\</driverpath>
+            <driverurl>https://drivers.dannyplace.com/T490S(2).zip</driverurl>
+			<hash>C0DE104C1E68625629646025D15A6129A2B4B6496CD9CEACD7F7B5078E1849BA</hash>
+	</driverlist>
+	<driverlist>
+        	<model>20T1S09M00</model>
+			<manufacturer>Lenovo</manufacturer>
+        	<driverpath>C:\Temp\</driverpath>
+            <driverurl>https://drivers.dannyplace.com/T14S.zip</driverurl>
+			<hash>89f35b09c6f71badae07a5c54e1f3c69</hash>
 	</driverlist>
 </drivers>
