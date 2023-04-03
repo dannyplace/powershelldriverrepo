@@ -36,11 +36,14 @@ write-host "Drivers found for model: $GetModelBios" -ForegroundColor White -Back
 write-host "Drivers being downloaded from: $GetURL`:" -ForegroundColor White -BackgroundColor Yellow
 Invoke-WebRequest -URI $GetURL -OutFile $DownloadFile
 
-
-
-
 if ($GetHashXML -eq (Get-FileHash -Path $DownloadFile | Select-Object -ExpandProperty Hash -first 1 -OutVariable GetFileHash)) {
     write-host "Hash matches with XML. The file should be secure!" -ForegroundColor White -BackgroundColor Green
+
+    Expand-Archive -Path $DownloadFile
+
+    Get-ChildItem $matchmodel | ForEach-Object { $_.FullName }
+
+    Get-ChildItem "$matchmodel" -Recurse -Filter "*.inf" | ForEach-Object { PNPUtil.exe /add-driver $_.FullName /install }
 
 }
 
@@ -48,10 +51,6 @@ else {
     write-host "Hash does NOT matche with the XML. File will be deleted! Refer to drivers.xml or Github." -ForegroundColor White -BackgroundColor Red
     Remove-Item -Path $DownloadFile
 }
-
-# get-ChildItem $matchmodel | % { $_.FullName }
-
-# Get-ChildItem "$matchmodel" -Recurse -Filter "*.inf" | ForEach-Object { PNPUtil.exe /add-driver $_.FullName /install }
 }
 else { 
 write-host "No drivers found for $GetModelBios. Please refer to drivers.xml." -ForegroundColor White -BackgroundColor Red
