@@ -39,12 +39,11 @@ Invoke-WebRequest -URI $GetURL -OutFile $DownloadFile
 if ($GetHashXML -eq (Get-FileHash -Path $DownloadFile | Select-Object -ExpandProperty Hash -first 1 -OutVariable GetFileHash)) {
     write-host "Hash matches with XML. The file should be secure!" -ForegroundColor White -BackgroundColor Green
 
-    Expand-Archive -Path $DownloadFile
+    Expand-Archive -Path $DownloadFile -DestinationPath C:\Temp\
 
     Get-ChildItem $matchmodel | ForEach-Object { $_.FullName }
 
     Get-ChildItem "$matchmodel" -Recurse -Filter "*.inf" | ForEach-Object { PNPUtil.exe /add-driver $_.FullName /install }
-
 }
 
 else {
